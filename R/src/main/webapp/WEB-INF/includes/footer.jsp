@@ -1,4 +1,4 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <!-- Footer -->
             <footer class="sticky-footer bg-white">
@@ -108,7 +108,7 @@
 							} else {
 								for(var i = 0; i < list.length; i++){
 									str += '<div class="d-flex">';
-									str += '<a style="border: 0px" class="dropdown-item d-flex align-items-center col-sm-10" href=get?pageNum=1&amount=10&type=&keyword=&bno=' + list[i].bno +'>';
+									str += '<a style="border: 0px" class="dropdown-item d-flex align-items-center col-sm-10" href=board/get?pageNum=1&amount=10&type=&keyword=&bno=' + list[i].bno +'>';
 									str += '<div class="mr-3">';
 									str += '<div class="icon-circle bg-primary">';
 									str += '<i class="fas fa-file-alt text-white"></i>';
