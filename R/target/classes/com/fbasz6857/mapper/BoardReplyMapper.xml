@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fbasz6857.mapper.BoardReplyMapper">
+
+	<insert id="insert">
+		insert into r_boardreply(bno, reply, replyer) values(#{bno}, #{reply}, #{replyer})
+	</insert>
+	
+	<select id="read" resultType="com.fbasz6857.domain.BoardReplyVO">
+		select * from r_boardreply where rno = #{rno}
+	</select>
+	
+	<delete id="delete">
+		delete from r_boardreply where rno = #{rno}
+	</delete>
+	
+	<delete id="deleteAll">
+		delete from r_boardreply where bno = #{bno}
+	</delete>
+	
+	<update id="update">
+		update r_boardreply set reply = #{reply}, updateDate = now() where rno = #{rno}
+	</update>
+	
+	<select id="getListWithPaging">
+		select * from r_boardreply where bno = #{bno} order by rno limit #{start}, #{amount}
+	</select>
+	
+	<select id="getCountByBno" resultType="int">
+		select count(rno) from r_boardreply where bno = #{bno}
+	</select>
+	
+</mapper>

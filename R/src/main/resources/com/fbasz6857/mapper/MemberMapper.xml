@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fbasz6857.mapper.MemberMapper">
+	
+	<resultMap type="com.fbasz6857.domain.MemberVO" id="memberMap">
+		<id property="userId" column="userid"/>
+		<result property="userId" column="userid"/>
+		<result property="userPassword" column="userpassword"/>
+		<result property="userName" column="username"/>
+		<result property="regDate" column="regdate"/>
+		<result property="updateDate" column="updatedate"/>
+		<result property="postCode" column="postcode"/>
+		<result property="address" column="address"/>
+		<result property="detailAddress" column="detailaddress"/>
+		<result property="extraAddress" column="extraaddress"/>
+		<result property="enabled" column="enabled"/>
+		<collection property="authList" resultMap="authMap"/>
+	</resultMap>
+	
+	<resultMap type="com.fbasz6857.domain.AuthVO" id="authMap">
+		<result property="userId" column="userid"/>
+		<result property="auth" column="auth"/>
+	</resultMap>
+	
+	
+	<select id="read" resultMap="memberMap">
+		SELECT r.userid, userpassword, username, auth, regdate, updatedate, postcode, address, detailaddress, extraaddress, enabled
+		FROM r_member r left join r_member_auth ra on (r.userid = ra.userid)
+		where r.userid = #{userId}
+	</select>
+	
+	<insert id="insertMember">
+		insert into r_member (userid, userpassword, username, postcode, address, detailaddress, extraaddress)
+						values (#{userId}, #{userPassword}, #{userName}, #{postCode}, #{address}, #{detailAddress}, #{extraAddress})
+	</insert>
+	
+	<insert id="insertAuth">
+		insert into r_member_auth (userid) values (#{userid})
+	</insert>
+	
+	<select id="idChk" parameterType="String" resultType="int">
+		SELECT count(*) cnt from r_member where userid = #{userId}
+	</select>
+	
+	<delete id="deleteMember">
+		delete from r_member where userid = #{userId}
+	</delete>
+	
+	<delete id="deleteAuth">
+		delete from r_member_auth where userid = #{userId}
+	</delete>
+	
+	<update id="updateMember">
+		update r_member set username = #{userName}, updatedate = now(), postcode = #{postCode}, address = #{address}, detailaddress = #{detailAddress}, extraaddress = #{extraAddress} where userid = #{userId}
+	</update>
+	
+	<update id="updateAuth">
+		update r_member_auth set auth = #{auth } where userid = #{userId}
+	</update>
+	
+	<select id="updateAuthChkBoard" parameterType="String" resultType="int">
+		SELECT count(*) from r_board where writer = #{userId}
+	</select>
+	
+	<select id="updateAuthChkReply" parameterType="String" resultType="int">
+		SELECT count(*) from r_boardreply where replyer = #{userId}
+	</select>
+	
+</mapper>

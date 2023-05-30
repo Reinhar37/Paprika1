@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fbasz6857.mapper.AlarmMapper">
+
+	<select id="getList" resultType="com.fbasz6857.domain.AlarmVO">
+	 	<![CDATA[
+	 	select * from r_alarm where userid = #{userId} and ano > 0 order by ano
+	 	]]>
+	 	
+	</select>
+	
+	<insert id="insert">
+		insert into r_alarm (bno, userid, type, sourceTitle) values (#{bno}, #{userId}, #{type}, #{sourceTitle})
+	</insert>
+	
+	<update id="updateChk">
+		update r_alarm set checked = 1 where userid = #{userId}
+	</update>
+	
+	<delete id="delete">
+		delete from r_alarm where ano = #{ano}
+	</delete>
+	
+</mapper>

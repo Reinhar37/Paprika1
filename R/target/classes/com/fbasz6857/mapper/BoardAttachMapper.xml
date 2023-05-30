@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fbasz6857.mapper.BoardAttachMapper">
+
+<insert id="insert">
+	insert into r_attach (uuid, uploadPath, fileName, fileType, tableId, bno)
+		values(#{uuid}, #{uploadPath}, #{fileName}, #{fileType}, #{tableId}, #{bno})
+</insert>
+
+<delete id="delete">
+	delete from r_attach where uuid = #{uuid}
+</delete>
+
+<select id="findByBno" resultType="com.fbasz6857.domain.BoardAttachVO">
+	select uuid, uploadPath, fileName, fileType, tableId, bno from r_attach where tableId = #{TABLE_ID} and bno = #{bno}
+</select>
+
+<delete id="deleteAll">
+	delete from r_attach where tableId = #{TABLE_ID} and bno = #{bno}
+</delete>
+
+<select id="getOldFiles" resultType="com.fbasz6857.domain.BoardAttachVO">
+	SELECT uuid, uploadPath, fileName, fileType, tableId, bno FROM fbasz6857.r_attach
+		where uploadPath = date_format(date_add(now(), interval -1 day), '%Y\\%m\\%d')
+</select>
+	
+</mapper>
