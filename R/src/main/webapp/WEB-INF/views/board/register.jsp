@@ -30,7 +30,7 @@
 	                        </sec:authorize>
 							<div class="mb-3">
 							  <label class="form-label">내용</label>
-							  <textarea class="form-control" name="content" id="content" rows="20"></textarea>
+							  <textarea class="form-control" name="content" id="contentB" rows="20"></textarea>
 							</div>
 		                    <div class="row">
 								<div class="col-md-12">
@@ -94,6 +94,18 @@ function showImage(fileCallPath) {
 				str += "<input type='hidden' name='attachList[" + i + "].fileType' value='" + type + "'>";
 				
 			});
+			
+			if($("#title").val() == ''){
+				alert("제목을 입력해주세요.");
+				$("#title").focus();
+				return;
+			}
+			if($("#contentB").val() == ''){
+				alert("내용을 입력해주세요.");
+				$("#contentB").focus();
+				return;
+			}
+			
 			//console.log(str);
 			formObj.append(str).submit();
 		});

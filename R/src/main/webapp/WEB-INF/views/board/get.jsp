@@ -268,6 +268,13 @@ $(document).ready(function(){
 	});
 	
 	modalRegisterBtn.on("click",function(){
+		
+		if(modalInputReply.val() == ''){
+			alert("댓글 내용을 입력해주세요.");
+			modalInputReply.focus();
+			return;
+		}
+		
 		var reply = {
 				reply:modalInputReply.val(),
 				replyer:modalInputReplyer.val(),
