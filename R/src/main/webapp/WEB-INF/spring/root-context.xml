@@ -20,7 +20,7 @@
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
 		<property name="jdbcUrl" value="jdbc:log4jdbc:mysql://localhost:3306/fbasz6857?serverTimezone=Asia/Seoul&amp;CharacterEncoding=UTF-8"></property>
 		<property name="username" value="root"></property>
-		<property name="password" value="bigdata"></property>
+		<property name="password" value="12357Ii!"></property>
 	</bean>
 	
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
